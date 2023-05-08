@@ -21,17 +21,24 @@ router.get('/' , (request,response) => {
 })
 
 router.get('/:id' , (request,response) => {
-   const pageid = Number(request.params.id)
-   const serviceid = listofusers.find((vasanth)=> vasanth.id === pageid)
+//    const pageid = Number(request.params.id)
+//    const serviceid = listofusers.find((vasanth)=> vasanth.id === pageid)
 
-   if(!serviceid){
-    response.send ("page not found")
+//    if(!serviceid){
+//     response.send ("page not found")
 
-   }
-   else
-   {
-    response.json(serviceid.user)
-   }
+//    }
+//    else
+//    {
+//     response.json(serviceid.user)
+//    }
+response.send(`user list: ${request.sharon.user}`)
+})
+
+router.param("id", (request,response,next,id) =>{
+    request.sharon=listofusers[id]
+
+    next()
 })
 
 module.exports = router
